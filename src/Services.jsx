@@ -16,10 +16,12 @@ function Services() {
           placerat in egestas erat imperdiet sed euismod nisi.
           <ul>
             <li>Wire EDM</li>
-            <li>3 axis CNC Mill</li>
-            <li>5 axis CNC Mill</li>
-            <li>Lathe</li>
+            <li>CNC Mill</li>
+            <li>CNC Lathe</li>
             <li>Metal Stamping</li>
+            <li>
+              <a href="mailto:info@ustooldie.com">Ask for a quote</a>
+            </li>
           </ul>
         </div>
       </div>

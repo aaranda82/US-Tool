@@ -74,7 +74,7 @@ a:hover {
 
 .body {
   position: absolute;
-  top: 140px;
+  top: 100px;
 }
 
 .nav {
@@ -104,7 +104,6 @@ a:hover {
 }
 
 .content {
-  padding: 20px;
   width: 50%;
 }
 
@@ -112,6 +111,7 @@ a:hover {
 .servicesContent {
   font-size: 20px;
   text-align: justify;
+  padding: 20px;
 }
 
 .contentTitle {
@@ -157,10 +157,5 @@ a:hover {
 
   .content {
     width: 100%;
-    padding: 0;
-  }
-  .aboutContent,
-  .servicesContent {
-    padding: 20px;
   }
 }
