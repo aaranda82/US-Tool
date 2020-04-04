@@ -11,3 +11,156 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+a {
+  color: black;
+  font-size: 30px;
+  text-decoration: none;
+}
+
+a:hover {
+  color: blue;
+  text-decoration: underline;
+}
+.navItem a:hover {
+  background-image: url('./Logo_transparent.png');
+  background-size: contain;
+  background-position: left;
+  text-decoration: none;
+}
+
+.contact i {
+  margin: 0 10px;
+  font-size: 30px;
+}
+
+.title div,
+.content,
+.servicesTitle {
+  font-size: 50px;
+  font-weight: 600;
+  padding-top: 10px;
+}
+
+.top {
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+}
+
+.header {
+  height: 100px;
+  width: 100%;
+  display: flex;
+  background: white;
+}
+
+.logo {
+  background-image: url('./Logo_transparent.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 85px;
+  margin: 5px 10px 15px 20px;
+}
+
+.title {
+  width: 75%;
+  display: flex;
+}
+
+.contact {
+  width: 25%;
+}
+
+.body {
+  position: absolute;
+  top: 140px;
+}
+
+.nav {
+  background-image: linear-gradient(white, 70%, #535c68);
+  display: flex;
+  text-align: center;
+}
+
+.navItem {
+  width: 33%;
+  font-size: 25px;
+  font-weight: 600;
+}
+
+.about,
+.services {
+  display: flex;
+}
+
+.services {
+  flex-direction: row-reverse;
+}
+
+.aboutImage,
+.servicesImage {
+  width: 50%;
+}
+
+.content {
+  padding: 20px;
+  width: 50%;
+}
+
+.aboutContent,
+.servicesContent {
+  font-size: 20px;
+  text-align: justify;
+}
+
+.contentTitle {
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .header {
+    display: block;
+  }
+  a {
+    font-size: 15px;
+  }
+  .title {
+    width: 100%;
+  }
+  .title div,
+  .aboutTitle,
+  .servicesTitle {
+    font-size: 37px;
+    font-weight: 600;
+    padding-top: 0;
+  }
+  .logo {
+    margin: 0;
+    background-position: center;
+  }
+  .name {
+    margin: auto;
+  }
+  .contact {
+    width: 100%;
+    display: flex;
+  }
+  .about,
+  .services {
+    display: block;
+  }
+  .aboutImage,
+  .servicesImage {
+    width: 100%;
+  }
+
+  .content {
+    width: 100%;
+    padding: 0;
+  }
+  .aboutContent,
+  .servicesContent {
+    padding: 20px;
+  }
+}
