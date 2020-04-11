@@ -61,3 +61,18 @@ a:hover {
 .contactInfo {
   display: flex;
 }
+
+.contactInfo > div {
+  width: 33%;
+}
+
+.serviceContent {
+  background-color: #dfe6e9;
+  color: #2d3436;
+}
+
+.map {
+  background-image: url('./map.png');
+  background-size: contain;
+  margin: 0;
+}
