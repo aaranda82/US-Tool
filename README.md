@@ -6,4 +6,6 @@ Website for my family's business
 
 ## Integrations
 
+### Wireframe:
+
 ![Wireframe](/public/Wireframe.png)
