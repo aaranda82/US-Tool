@@ -8,4 +8,4 @@ Website for my family's business
 
 Wireframe:
 
-![Wireframe](/public/Wireframe.png)
+![Wireframe](/public/WireFrame1.png)
