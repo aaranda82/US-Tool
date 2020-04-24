@@ -2,9 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { ColorScheme } from '../styles/colorScheme';
 import About from './About';
-import Contact from './Contact';
+import Info from './Info';
 import Header from './Header';
-import Quote from './Quote';
+import Contact from './Contact';
 import Services from './Services';
 
 function Background() {
@@ -21,9 +21,9 @@ function Background() {
     <Background>
       <Header>Header</Header>
       <About>About</About>
-      <Quote>Quote</Quote>
-      <Services>Services</Services>
       <Contact>Contact</Contact>
+      <Services>Services</Services>
+      <Info>Info</Info>
     </Background>
   );
 }

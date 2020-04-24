@@ -2,18 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 import { ColorScheme } from '../styles/colorScheme';
 
-function Quote() {
+function Info() {
   const { lightGrey } = ColorScheme;
-  const Quote = styled.div`
+  const Info = styled.div`
     color: ${lightGrey};
     border: ${lightGrey} 3px solid;
-    width: 25%;
-
-    @media (max-width: 400px) {
-      width: 75%;
-    }
+    width: 75%;
   `;
-  return <Quote>Quote</Quote>;
+  return <Info>Info</Info>;
 }
 
-export default Quote;
+export default Info;
