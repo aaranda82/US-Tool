@@ -15,6 +15,7 @@ const BackgroundTag = styled.div`
   text-align: center;
   justify-content: center;
   align-items: center;
+  font-family: 'Montserrat', sans-serif;
 `;
 
 function Background() {
