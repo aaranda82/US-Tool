@@ -2,63 +2,77 @@ import React from 'react';
 import styled from 'styled-components';
 import { ColorScheme } from '../styles/colorScheme';
 
-const { black, lightGrey, red, salmon } = ColorScheme;
+const { black, lightGrey, red, salmon, green } = ColorScheme;
 const ContactForm = styled.div`
   color: ${lightGrey};
   border: ${lightGrey} 3px solid;
   width: 25%;
   min-height: 660px;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   @media (max-width: 400px) {
     width: 75%;
   }
 `;
 const Form = styled.form`
   font-size: 30px;
+  text-align: left;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 30px;
+`;
+const Label = styled.label`
+  display: inline-block;
+  padding: 20px 10px 20px 10px;
+  margin: 0;
 `;
 const Input = styled.input`
+  color: ${lightGrey}
+  margin: 0;
   font-size: 20px;
-  width: 90%;
   background-color: ${black};
   border: none;
-  border-bottom: 3px ${salmon} solid;
-
+  border-bottom: 3px ${props => props.color || lightGrey} solid;
+  width: 100%;
   &:focus {
     outline: none;
+    background-color: ${props => props.color || lightGrey};
+    opacity: 0.4;
   }
-`;
-const Text = styled.textarea`
-  font-size: 20px;
-  width: 100%;
-  background-color: ${black};
-  border: none;
-  border-bottom: 3px ${salmon} solid;
 `;
 const Error = styled.div`
   color: ${red};
   font-size: 15px;
+`;
+const Text = styled.textarea`
+  width: 100%;
+  font-size: 20px;
+  background-color: ${black};
+  border: none;
+  border-bottom: 3px ${props => props.color || lightGrey} solid;
+  &:focus {
+    outline: none;
+    background-color: ${props => props.color || lightGrey};
+    opacity: 0.4;
+  }
 `;
 const Button = styled.button`
   font-size: 20px;
   border: none;
   background-color: ${salmon};
   font-weight: bold;
-  padding: 10px 20px 10px 20px;
+  padding: 15px 30px 15px 30px;
+  outline: none;
   &:active {
-    transform: scale(1.2, 1.2);
+    transform: ${props => props.isActiveClick || ''};
   }
   &:hover {
     background-color: ${red};
+    outline: none;
   }
 `;
-const Legend = styled.legend`
-  text-align: center;
-`;
 
-function FormInput() {
-  return;
-}
+// function FormInput() {
+//   return;
+// }
 
 class Contact extends React.Component {
   constructor(props) {
@@ -82,7 +96,6 @@ class Contact extends React.Component {
   validateName() {
     let errors = { ...this.state.errors };
     const { name } = this.state;
-    console.log(!name);
     if (!name) {
       errors.nameError = 'Please enter a name';
     } else {
@@ -122,55 +135,75 @@ class Contact extends React.Component {
     this.validateName();
     this.validateEmail();
     this.validateText();
-    let errors = { ...this.state.errors };
-    const { name, email, text } = this.state;
-    if (name && email && text) {
+    console.log('validated');
+    const { nameError, emailError, textError } = this.state.errors;
+    if (!nameError && !emailError && !textError) {
       console.log('I submit!');
-      errors = {
-        nameError: '',
-        emailError: '',
-        textError: '',
-      };
     }
-    this.setState({ errors });
   }
 
   render() {
     return (
       <ContactForm>
         <Form onSubmit={this.handleSubmit}>
-          <fieldset>
-            <Legend>Contact Us</Legend>
+          <Label htmlFor="name">
+            Name
             <Input
+              color={this.state.errors.nameError ? salmon : green}
               id="name"
               type="text"
-              onChange={e => this.setState({ name: e.target.value })}
+              onChange={e => {
+                this.setState({ name: e.target.value });
+                this.validateName();
+              }}
               value={this.state.name}
               onBlur={this.validateName}
             />
-            <label htmlFor="name">Name:</label>
             <Error>{this.state.errors.nameError}</Error>
+          </Label>
+          <Label htmlFor="email">
+            Email
             <Input
+              color={this.state.errors.emailError ? salmon : green}
               id="email"
               type="text"
-              onChange={e => this.setState({ email: e.target.value })}
+              onChange={e => {
+                this.setState({ email: e.target.value });
+                this.validateEmail();
+              }}
               value={this.state.email}
               onBlur={this.validateEmail}
             />
-            <label htmlFor="email">Email:</label>
             <Error>{this.state.errors.emailError}</Error>
+          </Label>
+          <Label htmlFor="message">
+            Message
             <Text
+              color={this.state.errors.textError ? salmon : green}
               id="message"
-              onChange={e => this.setState({ text: e.target.value })}
+              onChange={e => {
+                this.setState({ text: e.target.value });
+                this.validateText();
+              }}
               value={this.state.text}
               cols="30"
               rows="10"
               onBlur={this.validateText}
             ></Text>
-            <label htmlFor="message">Message:</label>
             <Error>{this.state.errors.textError}</Error>
-            <Button type="submit">Submit</Button>
-          </fieldset>
+          </Label>
+          <Button
+            type="submit"
+            isActiveClick={
+              !this.state.errors.textError ||
+              !this.state.errors.nameError ||
+              !this.state.errors.emailError
+                ? 'scale(1.2, 1.2)'
+                : ''
+            }
+          >
+            Submit
+          </Button>
         </Form>
       </ContactForm>
     );
