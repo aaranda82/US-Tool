@@ -22,6 +22,12 @@ const Form = styled.form`
     text-align: center;
   }
 `;
+const Title = styled.div`
+  font-size: 50px;
+  font-weight: 600;
+  width: 100%;
+  text-align: center;
+`;
 const Label = styled.label`
   width: 100%;
   padding: 20px 10px 20px 10px;
@@ -36,7 +42,9 @@ const Input = styled.input`
   border: none;
   border-bottom: 3px ${props => props.color || lightGrey} solid;
   width: 100%;
+  transition: background-color 0.5s ease-in;
   &:focus {
+    color: ${black};
     outline: none;
     background-color: ${props => props.color || lightGrey};
     opacity: 0.4;
@@ -52,9 +60,11 @@ const Text = styled.textarea`
   color: ${lightGrey};
   background-color: ${black};
   border: none;
+  transition: background-color 0.5s ease-in;
   border-bottom: 3px ${props => props.color || lightGrey} solid;
   &:focus {
     outline: none;
+    color: ${black};
     background-color: ${props => props.color || lightGrey};
     opacity: 0.4;
   }
@@ -66,6 +76,7 @@ const Button = styled.button`
   padding: 15px 30px 15px 30px;
   outline: none;
   background-color: ${props => props.color || salmon};
+  transition: background-color 0.5s ease-in;
   &:active {
     transform: ${props => props.isActiveClick || ''};
   }
@@ -77,9 +88,40 @@ const Button = styled.button`
   }
 `;
 
-// function FormInput() {
-//   return;
-// }
+function FormInput(props) {
+  if (props.inputType === 'input') {
+    return (
+      <Label htmlFor={props.title}>
+        {props.title}
+        <Input
+          color={props.color}
+          id={props.title}
+          type="text"
+          onChange={props.onChange}
+          value={props.value}
+          onBlur={props.onBlur}
+        />
+        <Error>{props.error}</Error>
+      </Label>
+    );
+  } else {
+    return (
+      <Label htmlFor={props.title}>
+        {props.title}
+        <Text
+          color={props.color}
+          id={props.title}
+          onChange={props.onChange}
+          value={props.value}
+          cols="30"
+          rows="10"
+          onBlur={props.onBlur}
+        ></Text>
+        <Error>{props.error}</Error>
+      </Label>
+    );
+  }
+}
 
 class Contact extends React.Component {
   constructor(props) {
@@ -100,11 +142,6 @@ class Contact extends React.Component {
     this.validateEmail = this.validateEmail.bind(this);
     this.validateText = this.validateText.bind(this);
     this.validateInputs = this.validateInputs.bind(this);
-  }
-
-  componentDidMount() {
-    // this.isFormValid();
-    console.log(this.state.isValid);
   }
 
   isFormValid() {
@@ -198,52 +235,43 @@ class Contact extends React.Component {
             this.state.isValid ? this.handleSubmit : this.validateInputs
           }
         >
-          <Label htmlFor="name">
-            Name
-            <Input
-              color={this.state.errors.nameError ? salmon : green}
-              id="name"
-              type="text"
-              onChange={e => {
-                this.setState({ name: e.target.value });
-                this.validateName();
-              }}
-              value={this.state.name}
-              onBlur={this.validateName}
-            />
-            <Error>{this.state.errors.nameError}</Error>
-          </Label>
-          <Label htmlFor="email">
-            Email
-            <Input
-              color={this.state.errors.emailError ? salmon : green}
-              id="email"
-              type="text"
-              onChange={e => {
-                this.setState({ email: e.target.value });
-                this.validateEmail();
-              }}
-              value={this.state.email}
-              onBlur={this.validateEmail}
-            />
-            <Error>{this.state.errors.emailError}</Error>
-          </Label>
-          <Label htmlFor="message">
-            Message
-            <Text
-              color={this.state.errors.textError ? salmon : green}
-              id="message"
-              onChange={e => {
-                this.setState({ text: e.target.value });
-                this.validateText();
-              }}
-              value={this.state.text}
-              cols="30"
-              rows="10"
-              onBlur={this.validateText}
-            ></Text>
-            <Error>{this.state.errors.textError}</Error>
-          </Label>
+          <Title>Contact Us</Title>
+          <FormInput
+            inputType="input"
+            title={'Name'}
+            color={this.state.errors.nameError ? salmon : green}
+            onChange={e => {
+              this.setState({ name: e.target.value });
+              this.validateName();
+            }}
+            value={this.state.name}
+            onBlur={this.validateName}
+            error={this.state.errors.nameError}
+          />
+          <FormInput
+            inputType="input"
+            title={'Email'}
+            color={this.state.errors.emailError ? salmon : green}
+            onChange={e => {
+              this.setState({ email: e.target.value });
+              this.validateEmail();
+            }}
+            value={this.state.email}
+            onBlur={this.validateEmail}
+            error={this.state.errors.emailError}
+          />
+          <FormInput
+            inputType=""
+            title={'Message'}
+            color={this.state.errors.textError ? salmon : green}
+            onChange={e => {
+              this.setState({ text: e.target.value });
+              this.validateText();
+            }}
+            value={this.state.text}
+            onBlur={this.validateText}
+            error={this.state.errors.textError}
+          />
           <Button
             type="submit"
             color={this.state.isValid ? green : salmon}

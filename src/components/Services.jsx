@@ -8,9 +8,23 @@ const ServicesTag = styled.div`
   border: ${lightGrey} 3px solid;
   width: 75%;
 `;
+const Title = styled.div`
+  font-size: 50px;
+  font-weight: 600;
+`;
 
 function Services() {
-  return <ServicesTag>Services</ServicesTag>;
+  return (
+    <ServicesTag>
+      <Title>WHAT WE DO</Title>
+      <ol>
+        <li>CNC Milling</li>
+        <li>CNC Turning</li>
+        <li>EDM</li>
+        <li>Tool & Die</li>
+      </ol>
+    </ServicesTag>
+  );
 }
 
 export default Services;
