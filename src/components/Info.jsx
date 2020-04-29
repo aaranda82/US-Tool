@@ -8,9 +8,17 @@ const InfoTag = styled.div`
   border: ${lightGrey} 3px solid;
   width: 75%;
 `;
+const Title = styled.div`
+  font-size: 50px;
+  font-weight: 600;
+`;
 
 function Info() {
-  return <InfoTag>Info</InfoTag>;
+  return (
+    <InfoTag>
+      <Title>WHERE TO FIND US</Title>
+    </InfoTag>
+  );
 }
 
 export default Info;
