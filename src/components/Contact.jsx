@@ -9,7 +9,7 @@ const ContactForm = styled.div`
   width: 25%;
   min-height: 660px;
   @media (max-width: 400px) {
-    width: 75%;
+    width: 100%;
   }
 `;
 const Form = styled.form`
@@ -18,9 +18,12 @@ const Form = styled.form`
   display: flex;
   flex-wrap: wrap;
   padding: 30px;
+  @media (max-width: 400px) {
+    text-align: center;
+  }
 `;
 const Label = styled.label`
-  display: inline-block;
+  width: 100%;
   padding: 20px 10px 20px 10px;
   margin: 0;
 `;
@@ -28,6 +31,7 @@ const Input = styled.input`
   color: ${lightGrey}
   margin: 0;
   font-size: 20px;
+  color: ${lightGrey};
   background-color: ${black};
   border: none;
   border-bottom: 3px ${props => props.color || lightGrey} solid;
@@ -45,6 +49,7 @@ const Error = styled.div`
 const Text = styled.textarea`
   width: 100%;
   font-size: 20px;
+  color: ${lightGrey};
   background-color: ${black};
   border: none;
   border-bottom: 3px ${props => props.color || lightGrey} solid;
@@ -56,17 +61,19 @@ const Text = styled.textarea`
 `;
 const Button = styled.button`
   font-size: 20px;
-  border: none;
-  background-color: ${salmon};
+  border: 2px solid ${lightGrey};
   font-weight: bold;
   padding: 15px 30px 15px 30px;
   outline: none;
+  background-color: ${props => props.color || salmon};
   &:active {
     transform: ${props => props.isActiveClick || ''};
   }
   &:hover {
-    background-color: ${red};
     outline: none;
+  }
+  @media (max-width: 400px) {
+    margin: auto;
   }
 `;
 
@@ -86,11 +93,28 @@ class Contact extends React.Component {
         emailError: '',
         textError: '',
       },
+      isValid: false,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.validateName = this.validateName.bind(this);
     this.validateEmail = this.validateEmail.bind(this);
     this.validateText = this.validateText.bind(this);
+    this.validateInputs = this.validateInputs.bind(this);
+  }
+
+  componentDidMount() {
+    // this.isFormValid();
+    console.log(this.state.isValid);
+  }
+
+  isFormValid() {
+    const { nameError, emailError, textError } = this.state.errors;
+    const { name, email, text } = this.state;
+    let isValid = false;
+    if (!nameError && !emailError && !textError && name && email && text) {
+      isValid = true;
+    }
+    this.setState({ isValid });
   }
 
   validateName() {
@@ -101,6 +125,7 @@ class Contact extends React.Component {
     } else {
       errors.nameError = '';
     }
+    this.isFormValid();
     this.setState({ errors });
   }
 
@@ -116,6 +141,7 @@ class Contact extends React.Component {
     } else {
       errors.emailError = '';
     }
+    this.isFormValid();
     this.setState({ errors });
   }
 
@@ -127,25 +153,51 @@ class Contact extends React.Component {
     } else {
       errors.textError = '';
     }
+    this.isFormValid();
+    this.setState({ errors });
+  }
+
+  validateInputs(e) {
+    e.preventDefault();
+    let errors = { ...this.state.errors };
+    const { name, email, text } = this.state;
+    if (!name) {
+      errors.nameError = 'Please enter a name';
+    } else {
+      errors.nameError = '';
+    }
+    // eslint-disable-next-line
+    const reg = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+    if (!email) {
+      errors.emailError = 'Please enter an email address';
+    } else if (!reg.test(email)) {
+      errors.emailError = 'Email address not valid';
+    } else {
+      errors.emailError = '';
+    }
+
+    if (!text) {
+      errors.textError = 'Please enter a message';
+    } else {
+      errors.textError = '';
+    }
+    this.isFormValid();
     this.setState({ errors });
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    this.validateName();
-    this.validateEmail();
-    this.validateText();
-    console.log('validated');
-    const { nameError, emailError, textError } = this.state.errors;
-    if (!nameError && !emailError && !textError) {
-      console.log('I submit!');
-    }
+    console.log('I submit!');
   }
 
   render() {
     return (
       <ContactForm>
-        <Form onSubmit={this.handleSubmit}>
+        <Form
+          onSubmit={
+            this.state.isValid ? this.handleSubmit : this.validateInputs
+          }
+        >
           <Label htmlFor="name">
             Name
             <Input
@@ -194,13 +246,8 @@ class Contact extends React.Component {
           </Label>
           <Button
             type="submit"
-            isActiveClick={
-              !this.state.errors.textError ||
-              !this.state.errors.nameError ||
-              !this.state.errors.emailError
-                ? 'scale(1.2, 1.2)'
-                : ''
-            }
+            color={this.state.isValid ? green : salmon}
+            isActiveClick={this.state.isValid ? 'scale(1.2, 1.2)' : ''}
           >
             Submit
           </Button>
