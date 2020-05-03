@@ -7,7 +7,6 @@ const AboutTag = styled.div`
   color: ${lightGrey};
   border: ${lightGrey} 3px solid;
   width: 50%;
-
   @media (max-width: 400px) {
     width: 75%;
   }
