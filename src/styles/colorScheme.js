@@ -6,6 +6,7 @@ export const ColorScheme = {
   red: "#d63031",
   salmon: "#ff7675",
   blue: "#0984e3",
+  darkBlue: '#0c2461',
   lightBlue: "#74b9ff",
   orange: "#e17055",
   lightOrange: "#fab1a0",

@@ -2,10 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { ColorScheme } from '../styles/colorScheme';
 
-const { black, lightGrey, red, salmon, green } = ColorScheme;
+const { black, lightGrey, red, salmon, green, lightBlue } = ColorScheme;
 const ContactForm = styled.div`
   color: ${lightGrey};
-  border: ${lightGrey} 3px solid;
   width: 25%;
   min-height: 660px;
   @media (max-width: 400px) {
@@ -27,6 +26,7 @@ const Title = styled.div`
   font-weight: 600;
   width: 100%;
   text-align: center;
+  margin: 20px 0px 20px 0px;
 `;
 const Label = styled.label`
   width: 100%;
@@ -40,13 +40,13 @@ const Input = styled.input`
   color: ${lightGrey};
   background-color: ${black};
   border: none;
-  border-bottom: 3px ${props => props.color || lightGrey} solid;
+  border-bottom: 3px ${props => props.bgcolor || lightGrey} solid;
   width: 100%;
   transition: background-color 0.5s ease-in;
   &:focus {
     color: ${black};
     outline: none;
-    background-color: ${props => props.color || lightGrey};
+    background-color: ${props => props.bgcolor || lightGrey};
     opacity: 0.4;
   }
 `;
@@ -61,11 +61,11 @@ const Text = styled.textarea`
   background-color: ${black};
   border: none;
   transition: background-color 0.5s ease-in;
-  border-bottom: 3px ${props => props.color || lightGrey} solid;
+  border-bottom: 3px ${props => props.bgcolor || lightGrey} solid;
   &:focus {
     outline: none;
     color: ${black};
-    background-color: ${props => props.color || lightGrey};
+    background-color: ${props => props.bgcolor || lightGrey};
     opacity: 0.4;
   }
 `;
@@ -75,13 +75,15 @@ const Button = styled.button`
   font-weight: bold;
   padding: 15px 30px 15px 30px;
   outline: none;
-  background-color: ${props => props.color || salmon};
+  background-color: ${props => props.bgcolor};
   transition: background-color 0.5s ease-in;
+  cursor: pointer;
   &:active {
-    transform: ${props => props.isActiveClick || ''};
+    transform: ${props => props.isActiveClick};
   }
   &:hover {
     outline: none;
+    color: ${lightGrey};
   }
   @media (max-width: 400px) {
     margin: auto;
@@ -94,7 +96,7 @@ function FormInput(props) {
       <Label htmlFor={props.title}>
         {props.title}
         <Input
-          color={props.color}
+          bgcolor={props.color}
           id={props.title}
           type="text"
           onChange={props.onChange}
@@ -109,7 +111,7 @@ function FormInput(props) {
       <Label htmlFor={props.title}>
         {props.title}
         <Text
-          color={props.color}
+          bgcolor={props.color}
           id={props.title}
           onChange={props.onChange}
           value={props.value}
@@ -131,11 +133,11 @@ class Contact extends React.Component {
       email: '',
       text: '',
       errors: {
-        nameError: '',
-        emailError: '',
-        textError: '',
+        nameError: null,
+        emailError: null,
+        textError: null,
       },
-      isValid: false,
+      isValid: null,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.validateName = this.validateName.bind(this);
@@ -239,7 +241,16 @@ class Contact extends React.Component {
           <FormInput
             inputType="input"
             title={'Name'}
-            color={this.state.errors.nameError ? salmon : green}
+            color={() => {
+              switch (this.state.errors.nameError) {
+                case '':
+                  return green;
+                case 'Please enter a name':
+                  return salmon;
+                default:
+                  return lightBlue;
+              }
+            }}
             onChange={e => {
               this.setState({ name: e.target.value });
               this.validateName();
@@ -251,7 +262,17 @@ class Contact extends React.Component {
           <FormInput
             inputType="input"
             title={'Email'}
-            color={this.state.errors.emailError ? salmon : green}
+            color={() => {
+              switch (this.state.errors.emailError) {
+                case '':
+                  return green;
+                case 'Please enter an email address':
+                case 'Email address not valid':
+                  return salmon;
+                default:
+                  return lightBlue;
+              }
+            }}
             onChange={e => {
               this.setState({ email: e.target.value });
               this.validateEmail();
@@ -263,7 +284,16 @@ class Contact extends React.Component {
           <FormInput
             inputType=""
             title={'Message'}
-            color={this.state.errors.textError ? salmon : green}
+            color={() => {
+              switch (this.state.errors.textError) {
+                case '':
+                  return green;
+                case 'Please enter a message':
+                  return salmon;
+                default:
+                  return lightBlue;
+              }
+            }}
             onChange={e => {
               this.setState({ text: e.target.value });
               this.validateText();
@@ -274,7 +304,16 @@ class Contact extends React.Component {
           />
           <Button
             type="submit"
-            color={this.state.isValid ? green : salmon}
+            bgcolor={() => {
+              switch (this.state.isValid) {
+                case true:
+                  return green;
+                case false:
+                  return salmon;
+                default:
+                  return lightBlue;
+              }
+            }}
             isActiveClick={this.state.isValid ? 'scale(1.2, 1.2)' : ''}
           >
             Submit
