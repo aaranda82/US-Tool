@@ -7,6 +7,10 @@ const ContactForm = styled.div`
   color: ${lightGrey};
   width: 25%;
   min-height: 660px;
+  border: 1px solid ${lightGrey};
+  @media (max-width: 1100px) {
+    width: 75%;
+  }
   @media (max-width: 400px) {
     width: 100%;
   }
@@ -102,6 +106,7 @@ function FormInput(props) {
           onChange={props.onChange}
           value={props.value}
           onBlur={props.onBlur}
+          placeholder={props.placeHolder}
         />
         <Error>{props.error}</Error>
       </Label>
@@ -118,6 +123,7 @@ function FormInput(props) {
           cols="30"
           rows="10"
           onBlur={props.onBlur}
+          placeholder={props.placeHolder}
         ></Text>
         <Error>{props.error}</Error>
       </Label>
@@ -258,6 +264,7 @@ class Contact extends React.Component {
             value={this.state.name}
             onBlur={this.validateName}
             error={this.state.errors.nameError}
+            placeHolder="Your name"
           />
           <FormInput
             inputType="input"
@@ -280,6 +287,7 @@ class Contact extends React.Component {
             value={this.state.email}
             onBlur={this.validateEmail}
             error={this.state.errors.emailError}
+            placeHolder="Your email"
           />
           <FormInput
             inputType=""
@@ -301,6 +309,7 @@ class Contact extends React.Component {
             value={this.state.text}
             onBlur={this.validateText}
             error={this.state.errors.textError}
+            placeHolder="How can we help?"
           />
           <Button
             type="submit"

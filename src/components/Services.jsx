@@ -11,11 +11,15 @@ const { lightGrey, black, lightBlue } = ColorScheme;
 const ServicesTag = styled.div`
   color: ${lightGrey};
   width: 75%;
+  @media (max-width: 400px) {
+    width: 100%;
+  }
 `;
 const ServiceContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: center;
+  border: 1px solid ${lightGrey};
 `;
 const Title = styled.div`
   font-size: 50px;
@@ -31,6 +35,10 @@ const ServiceTitle = styled.div`
   box-shadow: 15px 10px ${lightGrey};
   margin: 10px;
   z-index: 1;
+  @media (max-width: 780px) {
+    position: initial;
+    width: 50%;
+  }
 `;
 const ServiceShadow = styled.div`
   position: absolute;
@@ -40,6 +48,14 @@ const ServiceShadow = styled.div`
   z-index: 0;
   background-color: ${black};
   opacity: 0;
+  @media (max-width: 1240px) {
+    width: 250px;
+    height: 200px;
+  }
+  @media (max-width: 840px) {
+    width: 200px;
+    height: 160px;
+  }
 `;
 const ServiceInfo = styled.div`
   position: absolute;
@@ -52,28 +68,41 @@ const ServiceInfo = styled.div`
   opacity: 0;
 `;
 const ServiceBackground = styled.div`
+  border: solid 1px ${lightGrey};
+  position: relative;
   background-image: url(${props => props.background || defaultImg});
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
   height: 320px;
   width: 400px;
-  margin: 10px;
+  margin: 30px;
   border-radius: 20px;
-  position: relative;
   &:hover ${ServiceInfo} {
     opacity: 1;
   }
   &:hover ${ServiceShadow} {
     opacity: 0.5;
   }
+  &:hover {
+    box-shadow: 5px 5px 10px ${lightBlue};
+  }
+
+  @media (max-width: 1240px) {
+    width: 250px;
+    height: 200px;
+  }
+  @media (max-width: 840px) {
+    width: 200px;
+    height: 160px;
+  }
 `;
 function Service(props) {
   return (
     <ServiceBackground background={props.background}>
+      <ServiceTitle>{props.service}</ServiceTitle>
       <ServiceShadow></ServiceShadow>
       <ServiceInfo>{props.serviceInfo}</ServiceInfo>
-      <ServiceTitle>{props.service}</ServiceTitle>
     </ServiceBackground>
   );
 }
