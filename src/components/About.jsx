@@ -5,10 +5,15 @@ import { ColorScheme } from '../styles/colorScheme';
 const { lightGrey } = ColorScheme;
 const AboutTag = styled.div`
   color: ${lightGrey};
-  border: ${lightGrey} 3px solid;
+  border: ${lightGrey} 1px solid;
+  min-height: 660px;
   width: 50%;
-  @media (max-width: 400px) {
+  @media (max-width: 1100px) {
     width: 75%;
+  }
+  @media (max-width: 400px) {
+    width: 100%;
+    padding: 15px 30px 15px 30px;
   }
 `;
 const Title = styled.div`

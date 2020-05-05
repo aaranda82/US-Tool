@@ -20,7 +20,7 @@ const Form = styled.form`
   text-align: left;
   display: flex;
   flex-wrap: wrap;
-  padding: 30px;
+  padding: 15px 30px 15px 30px;
   @media (max-width: 400px) {
     text-align: center;
   }
@@ -121,7 +121,7 @@ function FormInput(props) {
           onChange={props.onChange}
           value={props.value}
           cols="30"
-          rows="10"
+          rows="5"
           onBlur={props.onBlur}
           placeholder={props.placeHolder}
         ></Text>

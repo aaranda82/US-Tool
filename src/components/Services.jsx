@@ -7,10 +7,11 @@ import cncTurning from '../assets/images/cncTurning1000x800.jpg';
 import wireEDM from '../assets/images/wireEDM1000x800.jpg';
 import stamping from '../assets/images/stamping1000x800.jpg';
 
-const { lightGrey, black, lightBlue } = ColorScheme;
+const { lightGrey, darkGrey, black, lightBlue } = ColorScheme;
 const ServicesTag = styled.div`
   color: ${lightGrey};
   width: 75%;
+  border: 1px solid ${lightBlue};
   @media (max-width: 400px) {
     width: 100%;
   }
@@ -18,8 +19,8 @@ const ServicesTag = styled.div`
 const ServiceContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  border: 1px solid ${lightGrey};
+  justify-content: space-around;
+  align-content: space-around;
 `;
 const Title = styled.div`
   font-size: 50px;
@@ -27,35 +28,20 @@ const Title = styled.div`
   margin: 40px 0px 40px 0px;
 `;
 const ServiceTitle = styled.div`
-  border: ${black} 2px solid;
   color: ${black};
   background-color: ${lightBlue};
-  position: absolute;
-  padding: 10px 20px 10px 20px;
-  box-shadow: 15px 10px ${lightGrey};
-  margin: 10px;
+  padding: 10px 0px 10px 0px;
   z-index: 1;
-  @media (max-width: 780px) {
-    position: initial;
-    width: 50%;
-  }
+  font-size: 30px;
+  font-weight: 600;
 `;
 const ServiceShadow = styled.div`
   position: absolute;
-  height: 320px;
-  width: 400px;
-  border-radius: 20px;
+  height: 100%;
+  width: 100%;
   z-index: 0;
   background-color: ${black};
   opacity: 0;
-  @media (max-width: 1240px) {
-    width: 250px;
-    height: 200px;
-  }
-  @media (max-width: 840px) {
-    width: 200px;
-    height: 160px;
-  }
 `;
 const ServiceInfo = styled.div`
   position: absolute;
@@ -67,17 +53,17 @@ const ServiceInfo = styled.div`
   font-weight: 600;
   opacity: 0;
 `;
-const ServiceBackground = styled.div`
-  border: solid 1px ${lightGrey};
+const ServiceImage = styled.div`
   position: relative;
   background-image: url(${props => props.background || defaultImg});
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  height: 320px;
-  width: 400px;
-  margin: 30px;
-  border-radius: 20px;
+  height: 50vmin;
+  width: 62.5vmin;
+`;
+const ServiceItem = styled.div`
+  margin: 10px 0px 10px 0px;
   &:hover ${ServiceInfo} {
     opacity: 1;
   }
@@ -85,25 +71,18 @@ const ServiceBackground = styled.div`
     opacity: 0.5;
   }
   &:hover {
-    box-shadow: 5px 5px 10px ${lightBlue};
-  }
-
-  @media (max-width: 1240px) {
-    width: 250px;
-    height: 200px;
-  }
-  @media (max-width: 840px) {
-    width: 200px;
-    height: 160px;
+    box-shadow: 5px 5px 10px ${darkGrey};
   }
 `;
 function Service(props) {
   return (
-    <ServiceBackground background={props.background}>
+    <ServiceItem>
       <ServiceTitle>{props.service}</ServiceTitle>
-      <ServiceShadow></ServiceShadow>
-      <ServiceInfo>{props.serviceInfo}</ServiceInfo>
-    </ServiceBackground>
+      <ServiceImage background={props.background}>
+        <ServiceShadow></ServiceShadow>
+        <ServiceInfo>{props.serviceInfo}</ServiceInfo>
+      </ServiceImage>
+    </ServiceItem>
   );
 }
 
