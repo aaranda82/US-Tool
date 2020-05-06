@@ -5,13 +5,10 @@ import { ColorScheme } from '../styles/colorScheme';
 const { black, lightGrey, red, salmon, green, lightBlue } = ColorScheme;
 const ContactForm = styled.div`
   color: ${lightGrey};
-  width: 25%;
+  width: 39%;
   min-height: 660px;
   border: 1px solid ${lightGrey};
   @media (max-width: 1100px) {
-    width: 75%;
-  }
-  @media (max-width: 400px) {
     width: 100%;
   }
 `;
@@ -30,7 +27,10 @@ const Title = styled.div`
   font-weight: 600;
   width: 100%;
   text-align: center;
-  margin: 20px 0px 20px 0px;
+  margin-bottom: 20px;
+  @media (max-width: 400px) {
+    font-size: 30px;
+  }
 `;
 const Label = styled.label`
   width: 100%;

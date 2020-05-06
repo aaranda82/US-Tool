@@ -2,21 +2,67 @@ import React from 'react';
 import styled from 'styled-components';
 import { ColorScheme } from '../styles/colorScheme';
 
-const { lightGrey } = ColorScheme;
+const { lightGrey, lightBlue } = ColorScheme;
 const InfoTag = styled.div`
   color: ${lightGrey};
-  border: ${lightGrey} 3px solid;
+  border: ${lightGrey} 1px solid;
   width: 75%;
+  @media (max-width: 400px) {
+    width: 100%;
+  }
 `;
 const Title = styled.div`
+  width: 100%;
   font-size: 50px;
   font-weight: 600;
+  @media (max-width: 400px) {
+    font-size: 30px;
+    padding-bottom: 15px;
+  }
 `;
-
+const Container = styled.div`
+  padding: 15px 30px 15px 30px;
+  display: flex;
+  flex-wrap: wrap;
+`;
+const InfoBox = styled.div`
+  width: 33%;
+`;
+const Anchor = styled.a`
+  text-decoration: none;
+  color: ${lightGrey};
+  &:hover {
+    text-decoration: underline;
+    color: ${lightBlue};
+  }
+  @media (max-width: 400px) {
+    font-size: 10px;
+  }
+`;
 function Info() {
   return (
     <InfoTag>
       <Title>WHERE TO FIND US</Title>
+      <Container>
+        <InfoBox>
+          <Anchor
+            target="_blank"
+            href="https://www.google.com/maps/place/23274+Del+Lago+Dr,+Laguna+Hills,+CA+92653/@33.6242382,-117.7286447,17z/data=!3m1!4b1!4m5!3m4!1s0x80dce87ca623d0c3:0x179fc2a195991f79!8m2!3d33.6242338!4d-117.7264507"
+          >
+            23274 Del Lago Dr #1308,
+            <br />
+            Laguna Hills,
+            <br />
+            CA 92653
+          </Anchor>
+        </InfoBox>
+        <InfoBox>Logo</InfoBox>
+        <InfoBox>
+          <Anchor href="tel:19494549858">(949) 454 - 9858</Anchor>
+          <br />
+          <Anchor href="">info@ustooldie.com</Anchor>
+        </InfoBox>
+      </Container>
     </InfoTag>
   );
 }
