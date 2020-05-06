@@ -17,13 +17,23 @@ const BackgroundTag = styled.div`
   align-items: center;
   font-family: 'Montserrat', sans-serif;
 `;
+const Container = styled.div`
+  width: 75%;
+  display: flex;
+  flex-wrap: wrap;
+  @media (max-width: 400px) {
+    width: 100%;
+  }
+`;
 
 function Background() {
   return (
     <BackgroundTag>
       <Header>Header</Header>
-      <About>About</About>
-      <Contact>Contact</Contact>
+      <Container>
+        <About>About</About>
+        <Contact>Contact</Contact>
+      </Container>
       <Services>Services</Services>
       <Info>Info</Info>
     </BackgroundTag>

@@ -25,7 +25,10 @@ const ServiceContainer = styled.div`
 const Title = styled.div`
   font-size: 50px;
   font-weight: 600;
-  margin: 40px 0px 40px 0px;
+  margin-bottom: 20px;
+  @media (max-width: 400px) {
+    font-size: 30px;
+  }
 `;
 const ServiceTitle = styled.div`
   color: ${black};
