@@ -21,18 +21,19 @@ const Container = styled.div`
   width: 75%;
   display: flex;
   flex-wrap: wrap;
-  @media (max-width: 400px) {
+  @media (max-width: 650px) {
     width: 100%;
   }
 `;
 
 function Background() {
+  console.log(window.scrollY);
   return (
     <BackgroundTag>
       <Header>Header</Header>
       <Container>
         <About>About</About>
-        <Contact>Contact</Contact>
+        <Contact></Contact>
       </Container>
       <Services>Services</Services>
       <Info>Info</Info>
