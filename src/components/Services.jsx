@@ -12,7 +12,7 @@ const ServicesTag = styled.div`
   color: ${lightGrey};
   width: 75%;
   border: 1px solid ${lightBlue};
-  @media (max-width: 400px) {
+  @media (max-width: 650px) {
     width: 100%;
   }
 `;
@@ -26,7 +26,7 @@ const Title = styled.div`
   font-size: 50px;
   font-weight: 600;
   margin-bottom: 20px;
-  @media (max-width: 400px) {
+  @media (max-width: 650px) {
     font-size: 30px;
   }
 `;
@@ -64,6 +64,14 @@ const ServiceImage = styled.div`
   background-position: center;
   height: 50vmin;
   width: 62.5vmin;
+  @media (max-width: 1130px) {
+    height: 40vmin;
+    width: 50vmin;
+  }
+  @media (max-width: 650px) {
+    height: 79.5vmin;
+    width: 100%;
+  }
 `;
 const ServiceItem = styled.div`
   margin: 10px 0px 10px 0px;
@@ -75,6 +83,9 @@ const ServiceItem = styled.div`
   }
   &:hover {
     box-shadow: 5px 5px 10px ${darkGrey};
+  }
+  @media (max-width: 650px) {
+    width: 100%;
   }
 `;
 function Service(props) {

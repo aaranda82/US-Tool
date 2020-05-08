@@ -232,7 +232,7 @@ class Contact extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log('I submit!');
+    console.log('I submit!', window.scrollY);
   }
 
   render() {

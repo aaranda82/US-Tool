@@ -7,7 +7,7 @@ const InfoTag = styled.div`
   color: ${lightGrey};
   border: ${lightGrey} 1px solid;
   width: 75%;
-  @media (max-width: 400px) {
+  @media (max-width: 650px) {
     width: 100%;
   }
 `;
@@ -15,7 +15,7 @@ const Title = styled.div`
   width: 100%;
   font-size: 50px;
   font-weight: 600;
-  @media (max-width: 400px) {
+  @media (max-width: 650px) {
     font-size: 30px;
     padding-bottom: 15px;
   }
@@ -35,7 +35,7 @@ const Anchor = styled.a`
     text-decoration: underline;
     color: ${lightBlue};
   }
-  @media (max-width: 400px) {
+  @media (max-width: 650px) {
     font-size: 10px;
   }
 `;
