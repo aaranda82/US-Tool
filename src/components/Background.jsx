@@ -26,7 +26,7 @@ function Background() {
       <Fab
         mainButtonStyles={{ backgroundColor: orange, color: black }}
         position={{ top: 5, right: 5 }}
-        icon={<i className="fas fa-paper-plane"></i>}
+        icon={<i className="fas fa-reply"></i>}
         event="click"
       >
         <Contact></Contact>
