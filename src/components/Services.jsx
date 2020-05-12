@@ -12,6 +12,7 @@ const ServicesTag = styled.div`
   color: ${lightGrey};
   width: 75%;
   border: 1px solid ${lightBlue};
+  position: relative;
   @media (max-width: 650px) {
     width: 100%;
   }
@@ -43,8 +44,9 @@ const ServiceShadow = styled.div`
   height: 100%;
   width: 100%;
   z-index: 0;
-  background-color: ${black};
+  background: ${black};
   opacity: 0;
+  transition: all 0.5s;
 `;
 const ServiceInfo = styled.div`
   position: absolute;
@@ -64,6 +66,7 @@ const ServiceImage = styled.div`
   background-position: center;
   height: 50vmin;
   width: 62.5vmin;
+  transition: all 0.5s;
   @media (max-width: 1130px) {
     height: 40vmin;
     width: 50vmin;
@@ -82,11 +85,21 @@ const ServiceItem = styled.div`
     opacity: 0.5;
   }
   &:hover {
-    box-shadow: 5px 5px 10px ${darkGrey};
+    box-shadow: 0px 0px 10px ${darkGrey};
   }
   @media (max-width: 650px) {
     width: 100%;
   }
+`;
+const ServiceModal = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 80%;
+  width: 80%;
+  background-color: ${lightGrey};
+  display: none;
 `;
 function Service(props) {
   return (
@@ -126,6 +139,7 @@ function Services() {
           serviceInfo="We do Tool & Die work!"
         ></Service>
       </ServiceContainer>
+      <ServiceModal></ServiceModal>
     </ServicesTag>
   );
 }

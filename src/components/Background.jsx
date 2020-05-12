@@ -7,7 +7,10 @@ import Header from './Header';
 import Contact from './Contact';
 import Services from './Services';
 
-const { black } = ColorScheme;
+import { Fab } from 'react-tiny-fab';
+import 'react-tiny-fab/dist/styles.css';
+
+const { black, orange } = ColorScheme;
 const BackgroundTag = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -17,24 +20,19 @@ const BackgroundTag = styled.div`
   align-items: center;
   font-family: 'Montserrat', sans-serif;
 `;
-const Container = styled.div`
-  width: 75%;
-  display: flex;
-  flex-wrap: wrap;
-  @media (max-width: 650px) {
-    width: 100%;
-  }
-`;
-
 function Background() {
-  console.log(window.scrollY);
   return (
     <BackgroundTag>
-      <Header>Header</Header>
-      <Container>
-        <About>About</About>
+      <Fab
+        mainButtonStyles={{ backgroundColor: orange, color: black }}
+        position={{ top: 5, right: 5 }}
+        icon={<i className="fas fa-paper-plane"></i>}
+        event="click"
+      >
         <Contact></Contact>
-      </Container>
+      </Fab>
+      <Header>Header</Header>
+      <About>About</About>
       <Services>Services</Services>
       <Info>Info</Info>
     </BackgroundTag>

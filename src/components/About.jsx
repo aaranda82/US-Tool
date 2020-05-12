@@ -6,7 +6,7 @@ const { lightGrey } = ColorScheme;
 const AboutTag = styled.div`
   color: ${lightGrey};
   border: ${lightGrey} 1px solid;
-  width: 60%;
+  width: 75%;
   @media (max-width: 1100px) {
     width: 100%;
   }
@@ -21,6 +21,7 @@ const Title = styled.div`
 `;
 const Content = styled.div`
   padding: 15px 30px 15px 30px;
+  font-size: 1.3em;
 `;
 
 function About() {
