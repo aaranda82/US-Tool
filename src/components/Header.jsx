@@ -2,20 +2,26 @@ import React from 'react';
 import styled from 'styled-components';
 import { ColorScheme } from '../styles/colorScheme';
 
-const { lightGrey } = ColorScheme;
+const { black, lightBlue } = ColorScheme;
 const HeaderTag = styled.div`
-  position: relative;
-  color: ${lightGrey};
-  border: ${lightGrey} 1px solid;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: ${lightBlue};
+  text-align: left;
+  font-size: 50px;
+  font-weight: 900;
+  color: ${black};
   height: 60px;
-  width: 75%;
+  width: 100%;
   @media (max-width: 650px) {
     width: 100%;
+    font-size: 40px;
   }
 `;
 
 function Header() {
-  return <HeaderTag>Header</HeaderTag>;
+  return <HeaderTag>U.S. TOOL & DIE</HeaderTag>;
 }
 
 export default Header;

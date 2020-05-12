@@ -2,10 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { ColorScheme } from '../styles/colorScheme';
 
-const { lightGrey, lightBlue } = ColorScheme;
+const { black, lightBlue } = ColorScheme;
 const InfoTag = styled.div`
-  color: ${lightGrey};
-  border: ${lightGrey} 1px solid;
+  color: ${black};
   width: 75%;
   @media (max-width: 650px) {
     width: 100%;
@@ -30,7 +29,7 @@ const InfoBox = styled.div`
 `;
 const Anchor = styled.a`
   text-decoration: none;
-  color: ${lightGrey};
+  color: ${black};
   &:hover {
     text-decoration: underline;
     color: ${lightBlue};
