@@ -5,12 +5,10 @@ import { ColorScheme } from '../styles/colorScheme';
 const { black, lightGrey, red, salmon, green, lightBlue } = ColorScheme;
 const ContactForm = styled.div`
   color: ${lightGrey};
-  width: 39%;
-  min-height: 660px;
+  min-height: 600px;
   border: 1px solid ${lightGrey};
-  @media (max-width: 1100px) {
-    width: 100%;
-  }
+  background-color: ${black};
+  width: 350px;
 `;
 const Form = styled.form`
   font-size: 30px;
@@ -28,7 +26,7 @@ const Title = styled.div`
   width: 100%;
   text-align: center;
   margin-bottom: 20px;
-  @media (max-width: 400px) {
+  @media (max-width: 650px) {
     font-size: 30px;
   }
 `;
@@ -36,6 +34,9 @@ const Label = styled.label`
   width: 100%;
   padding: 20px 10px 20px 10px;
   margin: 0;
+  @media (max-width: 650px) {
+    font-size: 20px;
+  }
 `;
 const Input = styled.input`
   color: ${lightGrey}
@@ -46,7 +47,8 @@ const Input = styled.input`
   border: none;
   border-bottom: 3px ${props => props.bgcolor || lightGrey} solid;
   width: 100%;
-  transition: background-color 0.5s ease-in;
+  transition: all 0.5s ease;
+
   &:focus {
     color: ${black};
     outline: none;
@@ -64,7 +66,7 @@ const Text = styled.textarea`
   color: ${lightGrey};
   background-color: ${black};
   border: none;
-  transition: background-color 0.5s ease-in;
+  transition: all 0.5s ease;
   border-bottom: 3px ${props => props.bgcolor || lightGrey} solid;
   &:focus {
     outline: none;
@@ -80,8 +82,9 @@ const Button = styled.button`
   padding: 15px 30px 15px 30px;
   outline: none;
   background-color: ${props => props.bgcolor};
-  transition: background-color 0.5s ease-in;
+  transition: all 0.5s ease;
   cursor: pointer;
+  margin: 40px auto;
   &:active {
     transform: ${props => props.isActiveClick};
   }
@@ -90,15 +93,14 @@ const Button = styled.button`
     color: ${lightGrey};
   }
   @media (max-width: 400px) {
-    margin: auto;
   }
 `;
 
 function FormInput(props) {
   if (props.inputType === 'input') {
     return (
-      <Label htmlFor={props.title}>
-        {props.title}
+      <>
+        <Label htmlFor={props.title}>{props.title}</Label>
         <Input
           bgcolor={props.color}
           id={props.title}
@@ -109,12 +111,12 @@ function FormInput(props) {
           placeholder={props.placeHolder}
         />
         <Error>{props.error}</Error>
-      </Label>
+      </>
     );
   } else {
     return (
-      <Label htmlFor={props.title}>
-        {props.title}
+      <>
+        <Label htmlFor={props.title}>{props.title}</Label>
         <Text
           bgcolor={props.color}
           id={props.title}
@@ -126,7 +128,7 @@ function FormInput(props) {
           placeholder={props.placeHolder}
         ></Text>
         <Error>{props.error}</Error>
-      </Label>
+      </>
     );
   }
 }
