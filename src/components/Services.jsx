@@ -78,6 +78,7 @@ const ServiceImage = styled.div`
 `;
 const ServiceItem = styled.div`
   margin: 10px 0px 10px 0px;
+  cursor: pointer;
   &:hover ${ServiceInfo} {
     opacity: 1;
   }
@@ -98,12 +99,18 @@ const ServiceModal = styled.div`
   transform: translate(-50%, -50%);
   height: 80%;
   width: 80%;
+  background-color: ${lightBlue};
+  z-index: 1;
+  font-size: 30px;
+  color: ${black};
+`;
+const Exit = styled.div`
   background-color: ${lightGrey};
-  display: none;
+  cursor: pointer;
 `;
 function Service(props) {
   return (
-    <ServiceItem>
+    <ServiceItem onClick={props.onClick}>
       <ServiceTitle>{props.service}</ServiceTitle>
       <ServiceImage background={props.background}>
         <ServiceShadow></ServiceShadow>
@@ -113,35 +120,57 @@ function Service(props) {
   );
 }
 
-function Services() {
-  return (
-    <ServicesTag>
-      <Title>WHAT WE DO</Title>
-      <ServiceContainer>
-        <Service
-          service="CNC Milling"
-          background={cncMillingImg}
-          serviceInfo="We do CNC Milling work!"
-        ></Service>
-        <Service
-          service="CNC Turning"
-          background={cncTurning}
-          serviceInfo="We do CNC Turning work!"
-        ></Service>
-        <Service
-          service="Wire EDM"
-          background={wireEDM}
-          serviceInfo="We do Wire EDM work!"
-        ></Service>
-        <Service
-          service="Tool & Die"
-          background={stamping}
-          serviceInfo="We do Tool & Die work!"
-        ></Service>
-      </ServiceContainer>
-      <ServiceModal></ServiceModal>
-    </ServicesTag>
-  );
+class Services extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      view: '',
+      modalContent: 'Hello world',
+    };
+    this.madal = this.modal.bind(this);
+  }
+  modal(view, modalContent) {
+    this.setState({ view, modalContent });
+  }
+  render() {
+    return (
+      <ServicesTag>
+        {this.state.view ? (
+          <ServiceModal>
+            <Exit onClick={() => this.modal('', '')}>X</Exit>
+            {this.state.modalContent}
+          </ServiceModal>
+        ) : null}
+        <Title>WHAT WE DO</Title>
+        <ServiceContainer>
+          <Service
+            service="CNC Milling"
+            background={cncMillingImg}
+            serviceInfo="We do CNC Milling work!"
+            onClick={() => this.modal('show', 'service1')}
+          ></Service>
+          <Service
+            service="CNC Turning"
+            background={cncTurning}
+            serviceInfo="We do CNC Turning work!"
+            onClick={() => this.modal('show', 'service2')}
+          ></Service>
+          <Service
+            service="Wire EDM"
+            background={wireEDM}
+            serviceInfo="We do Wire EDM work!"
+            onClick={() => this.modal('show', 'service3')}
+          ></Service>
+          <Service
+            service="Tool & Die"
+            background={stamping}
+            serviceInfo="We do Tool & Die work!"
+            onClick={() => this.modal('show', 'service4')}
+          ></Service>
+        </ServiceContainer>
+      </ServicesTag>
+    );
+  }
 }
 
 export default Services;
