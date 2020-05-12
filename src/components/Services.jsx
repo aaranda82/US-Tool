@@ -11,7 +11,6 @@ const { lightGrey, darkGrey, black, lightBlue } = ColorScheme;
 const ServicesTag = styled.div`
   color: ${lightGrey};
   width: 75%;
-  border: 1px solid ${lightBlue};
   position: relative;
   @media (max-width: 650px) {
     width: 100%;
@@ -41,11 +40,10 @@ const ServiceTitle = styled.div`
 `;
 const ServiceShadow = styled.div`
   position: absolute;
-  height: 100%;
+  height: 0%;
   width: 100%;
   z-index: 0;
-  background: ${black};
-  opacity: 0;
+  background: ${lightBlue};
   transition: all 0.5s;
 `;
 const ServiceInfo = styled.div`
@@ -57,6 +55,7 @@ const ServiceInfo = styled.div`
   font-size: 30px;
   font-weight: 600;
   opacity: 0;
+  transition: all 0.7s;
 `;
 const ServiceImage = styled.div`
   position: relative;
@@ -64,12 +63,20 @@ const ServiceImage = styled.div`
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  height: 50vmin;
-  width: 62.5vmin;
+  height: 480px;
+  width: 600px;
   transition: all 0.5s;
-  @media (max-width: 1130px) {
-    height: 40vmin;
-    width: 50vmin;
+  @media (max-width: 1600px) {
+    height: 320px;
+    width: 400px;
+  }
+  @media (max-width: 1100px) {
+    height: 240px;
+    width: 300px;
+  }
+  @media (max-width: 800px) {
+    height: 160px;
+    width: 200px;
   }
   @media (max-width: 650px) {
     height: 79.5vmin;
@@ -83,7 +90,7 @@ const ServiceItem = styled.div`
     opacity: 1;
   }
   &:hover ${ServiceShadow} {
-    opacity: 0.5;
+    height: 100%;
   }
   &:hover {
     box-shadow: 0px 0px 10px ${darkGrey};
@@ -127,7 +134,7 @@ class Services extends React.Component {
       view: '',
       modalContent: 'Hello world',
     };
-    this.madal = this.modal.bind(this);
+    this.modal = this.modal.bind(this);
   }
   modal(view, modalContent) {
     this.setState({ view, modalContent });

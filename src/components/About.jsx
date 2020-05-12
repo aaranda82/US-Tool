@@ -2,12 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import { ColorScheme } from '../styles/colorScheme';
 
-const { lightGrey } = ColorScheme;
+const { black, lightBlue } = ColorScheme;
 const AboutTag = styled.div`
-  color: ${lightGrey};
-  border: ${lightGrey} 1px solid;
+  color: ${black};
   width: 75%;
-  @media (max-width: 1100px) {
+  @media (max-width: 650px) {
     width: 100%;
   }
 `;
@@ -23,24 +22,20 @@ const Content = styled.div`
   padding: 15px 30px 15px 30px;
   font-size: 1.3em;
 `;
-
+const Name = styled.span`
+  color: ${lightBlue};
+  font-size: 1.4em;
+`;
+const Attr = styled.span`
+  font-weight: 600;
+`;
 function About() {
   return (
     <AboutTag>
       <Title>WHO WE ARE</Title>
       <Content>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Quam id leo in vitae
-        turpis massa sed elementum. Tempor orci eu lobortis elementum. Vitae
-        purus faucibus ornare suspendisse sed nisi. Cursus mattis molestie a
-        iaculis at. Nisi porta lorem mollis aliquam. Facilisi nullam vehicula
-        ipsum a arcu. Enim nunc faucibus a pellentesque sit amet. Morbi blandit
-        cursus risus at ultrices mi tempus imperdiet nulla. Sodales ut eu sem
-        integer vitae justo eget magna. Tincidunt tortor aliquam nulla facilisi.
-        Semper viverra nam libero justo. Eu turpis egestas pretium aenean
-        pharetra. Tempus imperdiet nulla malesuada pellentesque elit eget
-        gravida. Orci dapibus ultrices in iaculis nunc. Aliquet bibendum enim
-        facilisis gravida neque convallis a cras semper.
+        <Name>U.S. Tool & Die</Name> is a family-owned business providing{' '}
+        <Attr>high quality</Attr>, <Attr>on time</Attr> service since 1986.
       </Content>
     </AboutTag>
   );

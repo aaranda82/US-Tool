@@ -10,11 +10,11 @@ import Services from './Services';
 import { Fab } from 'react-tiny-fab';
 import 'react-tiny-fab/dist/styles.css';
 
-const { black, orange } = ColorScheme;
+const { lightGrey, black, orange } = ColorScheme;
 const BackgroundTag = styled.div`
   display: flex;
   flex-wrap: wrap;
-  background: ${black};
+  background: ${lightGrey};
   text-align: center;
   justify-content: center;
   align-items: center;
