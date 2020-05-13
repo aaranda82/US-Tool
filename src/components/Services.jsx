@@ -48,11 +48,13 @@ const ServiceShadow = styled.div`
 `;
 const ServiceInfo = styled.div`
   position: absolute;
+  width: 100%;
+  padding: 5px;
   transform: translate(-50%, -50%);
   left: 50%;
   top: 50%;
   color: ${lightGrey};
-  font-size: 30px;
+  font-size: 25px;
   font-weight: 600;
   opacity: 0;
   transition: all 0.7s;
@@ -75,8 +77,8 @@ const ServiceImage = styled.div`
     width: 300px;
   }
   @media (max-width: 800px) {
-    height: 160px;
-    width: 200px;
+    height: 320px;
+    width: 400px;
   }
   @media (max-width: 650px) {
     height: 79.5vmin;
@@ -99,25 +101,9 @@ const ServiceItem = styled.div`
     width: 100%;
   }
 `;
-const ServiceModal = styled.div`
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  height: 80%;
-  width: 80%;
-  background-color: ${lightBlue};
-  z-index: 1;
-  font-size: 30px;
-  color: ${black};
-`;
-const Exit = styled.div`
-  background-color: ${lightGrey};
-  cursor: pointer;
-`;
 function Service(props) {
   return (
-    <ServiceItem onClick={props.onClick}>
+    <ServiceItem>
       <ServiceTitle>{props.service}</ServiceTitle>
       <ServiceImage background={props.background}>
         <ServiceShadow></ServiceShadow>
@@ -127,57 +113,53 @@ function Service(props) {
   );
 }
 
-class Services extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      view: '',
-      modalContent: 'Hello world',
-    };
-    this.modal = this.modal.bind(this);
-  }
-  modal(view, modalContent) {
-    this.setState({ view, modalContent });
-  }
-  render() {
-    return (
-      <ServicesTag>
-        {this.state.view ? (
-          <ServiceModal>
-            <Exit onClick={() => this.modal('', '')}>X</Exit>
-            {this.state.modalContent}
-          </ServiceModal>
-        ) : null}
-        <Title>WHAT WE DO</Title>
-        <ServiceContainer>
-          <Service
-            service="CNC Milling"
-            background={cncMillingImg}
-            serviceInfo="We do CNC Milling work!"
-            onClick={() => this.modal('show', 'service1')}
-          ></Service>
-          <Service
-            service="CNC Turning"
-            background={cncTurning}
-            serviceInfo="We do CNC Turning work!"
-            onClick={() => this.modal('show', 'service2')}
-          ></Service>
-          <Service
-            service="Wire EDM"
-            background={wireEDM}
-            serviceInfo="We do Wire EDM work!"
-            onClick={() => this.modal('show', 'service3')}
-          ></Service>
-          <Service
-            service="Tool & Die"
-            background={stamping}
-            serviceInfo="We do Tool & Die work!"
-            onClick={() => this.modal('show', 'service4')}
-          ></Service>
-        </ServiceContainer>
-      </ServicesTag>
-    );
-  }
+function Machines(m) {
+  const machinery = m.map((machine, index) => <div key={index}>{machine}</div>);
+  return machinery;
+}
+
+function Services() {
+  return (
+    <ServicesTag>
+      <Title>WHAT WE DO</Title>
+      <ServiceContainer>
+        <Service
+          service="CNC Milling"
+          background={cncMillingImg}
+          serviceInfo={Machines([
+            '2 - Fadal 3 axis CNC Mill',
+            'Fadal 4 axis CNC Mill',
+          ])}
+        ></Service>
+        <Service
+          service="CNC Turning"
+          background={cncTurning}
+          serviceInfo={Machines([
+            'Dynamic 3 axis CNC Lathe with Fagor controls',
+            'Femco HL-25 CNC Lathe with Fanuc controls',
+          ])}
+        ></Service>
+        <Service
+          service="Wire EDM"
+          background={wireEDM}
+          serviceInfo={Machines([
+            '2 - Fanuc alpha-OC',
+            'Fanuc Robocut alpha-1iA',
+          ])}
+        ></Service>
+        <Service
+          service="Tool & Die"
+          background={stamping}
+          serviceInfo={Machines([
+            'Blank Die',
+            'Progressive Die',
+            'Forming Die',
+            'Short and Long Stamping Runs',
+          ])}
+        ></Service>
+      </ServiceContainer>
+    </ServicesTag>
+  );
 }
 
 export default Services;
