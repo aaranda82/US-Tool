@@ -87,7 +87,6 @@ const ServiceImage = styled.div`
 `;
 const ServiceItem = styled.div`
   margin: 10px 0px 10px 0px;
-  cursor: pointer;
   &:hover ${ServiceInfo} {
     opacity: 1;
   }

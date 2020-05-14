@@ -252,6 +252,17 @@ class Contact extends React.Component {
           console.log(error.text);
         }
       );
+    this.setState({
+      name: '',
+      email: '',
+      text: '',
+      errors: {
+        nameError: null,
+        emailError: null,
+        textError: null,
+      },
+      isValid: null,
+    });
   }
 
   render() {

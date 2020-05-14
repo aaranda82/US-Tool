@@ -55,7 +55,7 @@ function Info() {
             CA 92653
           </Anchor>
         </InfoBox>
-        <InfoBox>Logo</InfoBox>
+        <InfoBox></InfoBox>
         <InfoBox>
           <Anchor href="tel:19494549858">(949) 454 - 9858</Anchor>
           <br />
