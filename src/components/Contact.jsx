@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { ColorScheme } from '../styles/colorScheme';
+import emailjs from 'emailjs-com';
 
 const { black, lightGrey, red, salmon, green, lightBlue } = ColorScheme;
 const ContactForm = styled.div`
@@ -102,6 +103,7 @@ function FormInput(props) {
       <>
         <Label htmlFor={props.title}>{props.title}</Label>
         <Input
+          name={props.name}
           bgcolor={props.color}
           id={props.title}
           type="text"
@@ -118,6 +120,7 @@ function FormInput(props) {
       <>
         <Label htmlFor={props.title}>{props.title}</Label>
         <Text
+          name={props.name}
           bgcolor={props.color}
           id={props.title}
           onChange={props.onChange}
@@ -147,7 +150,7 @@ class Contact extends React.Component {
       },
       isValid: null,
     };
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.sendEmail = this.sendEmail.bind(this);
     this.validateName = this.validateName.bind(this);
     this.validateEmail = this.validateEmail.bind(this);
     this.validateText = this.validateText.bind(this);
@@ -232,21 +235,46 @@ class Contact extends React.Component {
     this.setState({ errors });
   }
 
-  handleSubmit(e) {
+  sendEmail(e) {
     e.preventDefault();
-    console.log('I submit!', window.scrollY);
+    emailjs
+      .sendForm(
+        'default_service',
+        'template_uc1KOyOn',
+        e.target,
+        'user_m6NruWncZN4iR0Yby8Isl'
+      )
+      .then(
+        result => {
+          console.log(result.text, 'ok');
+        },
+        error => {
+          console.log(error.text);
+        }
+      );
+    this.setState({
+      name: '',
+      email: '',
+      text: '',
+      errors: {
+        nameError: null,
+        emailError: null,
+        textError: null,
+      },
+      isValid: null,
+    });
   }
 
   render() {
     return (
       <ContactForm>
         <Form
-          onSubmit={
-            this.state.isValid ? this.handleSubmit : this.validateInputs
-          }
+          onSubmit={this.state.isValid ? this.sendEmail : this.validateInputs}
         >
           <Title>Contact Us</Title>
+          <input type="hidden" name="contact_number"></input>
           <FormInput
+            name="from_name"
             inputType="input"
             title={'Name'}
             color={() => {
@@ -269,6 +297,7 @@ class Contact extends React.Component {
             placeHolder="Your name"
           />
           <FormInput
+            name="from_email"
             inputType="input"
             title={'Email'}
             color={() => {
@@ -292,6 +321,7 @@ class Contact extends React.Component {
             placeHolder="Your email"
           />
           <FormInput
+            name="message_html"
             inputType=""
             title={'Message'}
             color={() => {

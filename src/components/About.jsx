@@ -32,7 +32,7 @@ const Attr = styled.span`
 function About() {
   return (
     <AboutTag>
-      <Title>WHO WE ARE</Title>
+      <Title></Title>
       <Content>
         <Name>U.S. Tool & Die</Name> is a family-owned business providing{' '}
         <Attr>high quality</Attr>, <Attr>on time</Attr> service since 1986.
