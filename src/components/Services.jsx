@@ -49,7 +49,6 @@ const ServiceShadow = styled.div`
 const ServiceInfo = styled.div`
   position: absolute;
   width: 100%;
-  padding: 5px;
   transform: translate(-50%, -50%);
   left: 50%;
   top: 50%;
@@ -58,7 +57,9 @@ const ServiceInfo = styled.div`
   font-weight: 600;
   opacity: 0;
   transition: all 0.7s;
+  text-align: left;
 `;
+
 const ServiceImage = styled.div`
   position: relative;
   background-image: url(${props => props.background || defaultImg});
@@ -100,21 +101,32 @@ const ServiceItem = styled.div`
     width: 100%;
   }
 `;
-function Service(props) {
+
+function Machines(m) {
+  const machinery = m.map((machine, index) => (
+    <div
+      style={{ margin: '10px 0', display: 'flex', flexWrap: 'wrap' }}
+      key={index}
+    >
+      <i
+        className="fas fa-dot-circle"
+        style={{ textAlign: 'center', width: '20%' }}
+      ></i>
+      <div style={{ width: '80%' }}>{machine}</div>
+    </div>
+  ));
+  return machinery;
+}
+function Service(name, background, serviceInfo) {
   return (
     <ServiceItem>
-      <ServiceTitle>{props.service}</ServiceTitle>
-      <ServiceImage background={props.background}>
+      <ServiceTitle>{name}</ServiceTitle>
+      <ServiceImage background={background}>
         <ServiceShadow></ServiceShadow>
-        <ServiceInfo>{props.serviceInfo}</ServiceInfo>
+        <ServiceInfo>{Machines(serviceInfo)}</ServiceInfo>
       </ServiceImage>
     </ServiceItem>
   );
-}
-
-function Machines(m) {
-  const machinery = m.map((machine, index) => <div key={index}>{machine}</div>);
-  return machinery;
 }
 
 function Services() {
@@ -122,40 +134,47 @@ function Services() {
     <ServicesTag>
       <Title>WHAT WE DO</Title>
       <ServiceContainer>
-        <Service
-          service="CNC Milling"
-          background={cncMillingImg}
-          serviceInfo={Machines([
-            '2 - Fadal 3 axis CNC Mill',
-            'Fadal 4 axis CNC Mill',
-          ])}
-        ></Service>
-        <Service
-          service="CNC Turning"
+        {Service('CNC Milling', cncMillingImg, [
+          '2 - Fadal 3 axis CNC Mill',
+          'Fadal 4 axis CNC Mill',
+        ])}
+        {Service('CNC Turning', cncTurning, [
+          'Dynamic 3 axis CNC Lathe with Fagor controls',
+          'Femco HL-25 CNC Lathe with Fanuc controls',
+        ])}
+        {/* <Service
+          name="CNC Turning"
           background={cncTurning}
-          serviceInfo={Machines([
+          serviceInfo={[
             'Dynamic 3 axis CNC Lathe with Fagor controls',
             'Femco HL-25 CNC Lathe with Fanuc controls',
-          ])}
-        ></Service>
-        <Service
-          service="Wire EDM"
+          ]}
+        ></Service> */}
+        {Service('Wire EDM', wireEDM, [
+          '2 - Fanuc alpha-OC',
+          'Fanuc Robocut alpha-1iA',
+        ])}
+        {/* <Service
+          name="Wire EDM"
           background={wireEDM}
-          serviceInfo={Machines([
-            '2 - Fanuc alpha-OC',
-            'Fanuc Robocut alpha-1iA',
-          ])}
-        ></Service>
-        <Service
-          service="Tool & Die"
+          serviceInfo={['2 - Fanuc alpha-OC', 'Fanuc Robocut alpha-1iA']}
+        ></Service> */}
+        {Service('Tool & Die', stamping, [
+          'Blank Die',
+          'Progressive Die',
+          'Forming Die',
+          'Short and Long Stamping Runs',
+        ])}
+        {/* <Service
+          name="Tool & Die"
           background={stamping}
-          serviceInfo={Machines([
+          serviceInfo={[
             'Blank Die',
             'Progressive Die',
             'Forming Die',
             'Short and Long Stamping Runs',
-          ])}
-        ></Service>
+          ]}
+        ></Service> */}
       </ServiceContainer>
     </ServicesTag>
   );
