@@ -14,7 +14,7 @@ const Title = styled.div`
   font-size: 50px;
   font-weight: 600;
   padding-top: 15px;
-  @media (max-width: 400px) {
+  @media media and (max-width: 400px) {
     font-size: 30px;
   }
 `;
@@ -31,7 +31,7 @@ const Attr = styled.span`
 `;
 function About() {
   return (
-    <AboutTag>
+    <AboutTag id="About">
       <Title></Title>
       <Content>
         <Name>U.S. Tool & Die</Name> is a family-owned business providing{' '}

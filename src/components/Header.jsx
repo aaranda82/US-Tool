@@ -14,14 +14,14 @@ const HeaderTag = styled.div`
   color: ${black};
   height: 60px;
   width: 100%;
-  @media (max-width: 650px) {
+  @media media and (max-width: 650px) {
     width: 100%;
     font-size: 40px;
   }
 `;
 
 function Header() {
-  return <HeaderTag>U.S. TOOL & DIE</HeaderTag>;
+  return <HeaderTag id="Header">U.S. TOOL & DIE</HeaderTag>;
 }
 
 export default Header;

@@ -17,7 +17,7 @@ const Form = styled.form`
   display: flex;
   flex-wrap: wrap;
   padding: 15px 30px 15px 30px;
-  @media (max-width: 400px) {
+  @media media and (max-width: 400px) {
     text-align: center;
   }
 `;
@@ -27,7 +27,7 @@ const Title = styled.div`
   width: 100%;
   text-align: center;
   margin-bottom: 20px;
-  @media (max-width: 650px) {
+  @media screen and (max-width: 650px) {
     font-size: 30px;
   }
 `;
@@ -35,7 +35,7 @@ const Label = styled.label`
   width: 100%;
   padding: 20px 10px 20px 10px;
   margin: 0;
-  @media (max-width: 650px) {
+  @media screen and (max-width: 650px) {
     font-size: 20px;
   }
 `;
@@ -93,7 +93,7 @@ const Button = styled.button`
     outline: none;
     color: ${lightGrey};
   }
-  @media (max-width: 400px) {
+  @media screen and (max-width: 400px) {
   }
 `;
 
@@ -267,7 +267,7 @@ class Contact extends React.Component {
 
   render() {
     return (
-      <ContactForm>
+      <ContactForm id="Contact">
         <Form
           onSubmit={this.state.isValid ? this.sendEmail : this.validateInputs}
         >

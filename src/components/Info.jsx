@@ -6,7 +6,7 @@ const { black, lightBlue } = ColorScheme;
 const InfoTag = styled.div`
   color: ${black};
   width: 75%;
-  @media (max-width: 650px) {
+  @media media and (max-width: 650px) {
     width: 100%;
   }
 `;
@@ -14,7 +14,7 @@ const Title = styled.div`
   width: 100%;
   font-size: 50px;
   font-weight: 600;
-  @media (max-width: 650px) {
+  @media media and (max-width: 650px) {
     font-size: 30px;
     padding-bottom: 15px;
   }
@@ -23,9 +23,15 @@ const Container = styled.div`
   padding: 15px 30px 15px 30px;
   display: flex;
   flex-wrap: wrap;
+  @media screen and (max-width: 650px) {
+    flex-direction: column;
+  }
 `;
 const InfoBox = styled.div`
   width: 33%;
+  @media screen and (max-width: 650px) {
+    width: 100%;
+  }
 `;
 const Anchor = styled.a`
   text-decoration: none;
@@ -34,13 +40,13 @@ const Anchor = styled.a`
     text-decoration: underline;
     color: ${lightBlue};
   }
-  @media (max-width: 650px) {
+  @media media and (max-width: 650px) {
     font-size: 10px;
   }
 `;
 function Info() {
   return (
-    <InfoTag>
+    <InfoTag id="info">
       <Title>WHERE TO FIND US</Title>
       <Container>
         <InfoBox>
