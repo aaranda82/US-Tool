@@ -6,16 +6,16 @@ const { black, lightBlue } = ColorScheme;
 const InfoTag = styled.div`
   color: ${black};
   width: 75%;
-  @media media and (max-width: 650px) {
+  @media screen and (max-width: 650px) {
     width: 100%;
   }
 `;
 const Title = styled.div`
   width: 100%;
-  font-size: 50px;
+  font-size: 30px;
   font-weight: 600;
-  @media media and (max-width: 650px) {
-    font-size: 30px;
+  @media screen and (max-width: 650px) {
+    font-size: 25px;
     padding-bottom: 15px;
   }
 `;
@@ -40,7 +40,7 @@ const Anchor = styled.a`
     text-decoration: underline;
     color: ${lightBlue};
   }
-  @media media and (max-width: 650px) {
+  @media screen and (max-width: 650px) {
     font-size: 10px;
   }
 `;

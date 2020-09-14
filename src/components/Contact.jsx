@@ -10,6 +10,9 @@ const ContactForm = styled.div`
   border: 1px solid ${lightGrey};
   background-color: ${black};
   width: 350px;
+  @media screen and (max-width: 400px) {
+    width: 300px;
+  }
 `;
 const Form = styled.form`
   font-size: 30px;
@@ -17,26 +20,26 @@ const Form = styled.form`
   display: flex;
   flex-wrap: wrap;
   padding: 15px 30px 15px 30px;
-  @media media and (max-width: 400px) {
+  @media screen and (max-width: 400px) {
     text-align: center;
   }
 `;
 const Title = styled.div`
-  font-size: 50px;
+  font-size: 30px;
   font-weight: 600;
   width: 100%;
   text-align: center;
   margin-bottom: 20px;
   @media screen and (max-width: 650px) {
-    font-size: 30px;
+    font-size: 20px;
   }
 `;
 const Label = styled.label`
+  font-size: 20px;
   width: 100%;
-  padding: 20px 10px 20px 10px;
-  margin: 0;
+  margin-top: 10px;
   @media screen and (max-width: 650px) {
-    font-size: 20px;
+    font-size: 15px;
   }
 `;
 const Input = styled.input`

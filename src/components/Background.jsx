@@ -20,7 +20,6 @@ const BGCont = styled.div`
 `;
 const InstagramCont = styled.div`
   width: 100%;
-  height: 100vh;
   z-index: 0;
   display: flex;
   align-items: center;
@@ -31,9 +30,7 @@ function Background() {
     <BGCont id="Background">
       <Fab
         mainButtonStyles={{ backgroundColor: orange, color: black }}
-        position={
-          window.screen.width < 500 ? { top: '87%' } : { top: 5, right: 5 }
-        }
+        position={{ top: 5, right: 5 }}
         icon={<i className="far fa-envelope" />}
         event="click"
       >
