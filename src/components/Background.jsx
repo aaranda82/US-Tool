@@ -10,39 +10,40 @@ import Services from './Services';
 import { Fab } from 'react-tiny-fab';
 import 'react-tiny-fab/dist/styles.css';
 
-const { lightGrey, black, orange } = ColorScheme;
-const BackgroundTag = styled.div`
+const { black, orange } = ColorScheme;
+const BGCont = styled.div`
   display: flex;
   flex-wrap: wrap;
-  background: ${lightGrey};
   text-align: center;
   justify-content: center;
-  align-items: center;
   font-family: 'Montserrat', sans-serif;
 `;
-const Instagram = styled.div`
+const InstagramCont = styled.div`
   width: 100%;
   z-index: 0;
+  display: flex;
+  align-items: center;
 `;
+
 function Background() {
   return (
-    <BackgroundTag>
+    <BGCont id="Background">
       <Fab
         mainButtonStyles={{ backgroundColor: orange, color: black }}
         position={{ top: 5, right: 5 }}
-        icon={<i className="far fa-envelope"></i>}
+        icon={<i className="far fa-envelope" />}
         event="click"
       >
-        <Contact></Contact>
+        <Contact />
       </Fab>
-      <Header>Header</Header>
-      <About>About</About>
-      <Services>Services</Services>
-      <Instagram>
+      <Header />
+      <About />
+      <Services />
+      <InstagramCont>
         <div className="elfsight-app-8bd9a12d-958f-467a-beb2-dc6738f88a09"></div>
-      </Instagram>
-      <Info>Info</Info>
-    </BackgroundTag>
+      </InstagramCont>
+      <Info />
+    </BGCont>
   );
 }
 
