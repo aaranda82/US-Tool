@@ -6,11 +6,12 @@ import cncTurning from '../assets/images/cncTurning1000x800.jpg';
 import wireEDM from '../assets/images/wireEDM1000x800.jpg';
 import stamping from '../assets/images/stamping1000x800.jpg';
 
-const { lightGrey } = ColorScheme;
+const { lightGrey, lightBlue } = ColorScheme;
 const ServicesContainer = styled.div`
   display: flex;
   align-items: center;
   background-color: ${lightGrey};
+  border-radius: 10px;
 `;
 
 function Machines(m) {
@@ -20,14 +21,17 @@ function Machines(m) {
 function ServiceCard(name, photo, serviceInfo) {
   return (
     <div className="col-sm">
-      <div className="card m-3">
+      <div className="card m-3 border-dark">
         <img src={photo} className="card-img-top" alt={name}></img>
         <div className="card-img-overlay">
-          <h5 style={{ background: 'white' }} className="card-title">
+          <h5
+            style={{ background: lightBlue }}
+            className="card-title rounded border border-dark"
+          >
             {name}
           </h5>
         </div>
-        <div className="card-body">{Machines(serviceInfo)}</div>
+        <div className="card-body rounded">{Machines(serviceInfo)}</div>
       </div>
     </div>
   );
@@ -36,7 +40,7 @@ function ServiceCard(name, photo, serviceInfo) {
 function Services() {
   return (
     <ServicesContainer>
-      <div className="container">
+      <div className="container m-3">
         <div className="row justify-content-around">
           {ServiceCard('WIRE EDM', wireEDM, [
             '2 - Fanuc alpha-OC',
@@ -52,9 +56,7 @@ function Services() {
             'Femco HL-25 CNC Lathe with Fanuc controls',
           ])}
           {ServiceCard('Tool & Die', stamping, [
-            'Blank Die',
-            'Progressive Die',
-            'Forming Die',
+            'Blank, Progressive, and Forming Dies',
             'Short and Long Stamping Runs',
           ])}
         </div>
