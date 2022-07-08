@@ -7,5 +7,6 @@
 Website for manufaturing business
 
 ## Integrations
+[elfsight](https://elfsight.com/) - Instagram feed widget
 
 [Live-Site](https://elegant-wozniak-b1f84a.netlify.com)
